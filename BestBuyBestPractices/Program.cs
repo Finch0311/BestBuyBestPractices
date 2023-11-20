@@ -12,15 +12,50 @@ string connString = config.GetConnectionString("DefaultConnection");
 
 IDbConnection conn = new MySqlConnection(connString);
 
-var departmentRepo = new DapperDeparmentRepository(conn);
+var productRepository = new DapperProductRepository(conn);
+#region Department Section
+//var departmentRepo = new DapperDeparmentRepository(conn);
 
-departmentRepo.InsertDepartment("John's New Department");
+//departmentRepo.InsertDepartment("John's New Department");
 
-var departments = departmentRepo.GetAllDepartments();
+//var departments = departmentRepo.GetAllDepartments();
 
-foreach (var department in departments)
+//foreach (var department in departments)
+//{
+//    Console.WriteLine(department.DepartmentID);
+//    Console.WriteLine(department.Name);
+//    Console.WriteLine();
+//}
+#endregion
+#region Products Section
+
+
+//var productToUpdate = productRepository.GetProduct(940);
+
+//productToUpdate.Name = "UPDATED!!!";
+
+//productToUpdate.OnSale = false;
+
+//productToUpdate.Price = 12.99;
+
+//productToUpdate.CategoryID = 1;
+
+//productToUpdate.StockLevel = 1000;
+
+//productRepository.UpdateProduct(productToUpdate);
+#endregion
+
+productRepository.DeleteProduct(940);
+var products = productRepository.GetAllProducts();
+
+foreach(var product in products)
 {
-    Console.WriteLine(department.DepartmentID);
-    Console.WriteLine(department.Name);
+    Console.WriteLine(product.ProductID);
+    Console.WriteLine(product.Name);
+    Console.WriteLine(product.Price);
+    Console.WriteLine(product.CategoryID);
+    Console.WriteLine(product.OnSale);
+    Console.WriteLine(product.StockLevel);
+    Console.WriteLine();
     Console.WriteLine();
 }
